@@ -35,7 +35,7 @@ export default function Home() {
     const persistedList = localStorage.getItem('questions')
       ? JSON.parse(localStorage.getItem('questions')!)?.['state']
       : null;
-    if (!persistedList) refetch();
+    if (!persistedList || persistedList?.list?.length === 0) refetch();
   }, []);
 
   const handleButtonRandom = () => {
@@ -44,20 +44,26 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.question}>
-        {list?.slice(0, 1).map((question, index) => {
-          return <Card key={index} {...question} />;
-        })}
-      </div>
-      <div className={styles.action}>
-        <button
-          className={`${styles['btn-random']} ${figtree.className}`}
-          onClick={handleButtonRandom}
-        >
-          <IconRefresh />
-          <span>Acak Pertanyaan</span>
-        </button>
-      </div>
+      {list.length > 0 ? (
+        <>
+          <div className={styles.question}>
+            {list?.slice(0, 1)?.map((question, index) => {
+              return <Card key={index} {...question} />;
+            })}
+          </div>
+          <div className={styles.action}>
+            <button
+              className={`${styles['btn-random']} ${figtree.className}`}
+              onClick={handleButtonRandom}
+            >
+              <IconRefresh />
+              <span>Acak Pertanyaan</span>
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="no-data">Tidak ada data</div>
+      )}
     </div>
   );
 }
