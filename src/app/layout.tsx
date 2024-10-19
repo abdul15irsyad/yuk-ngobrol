@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Provider } from '@/components/provider/provider';
-import { figtree } from '@/lib/figtree.font';
+import { poppins } from '@/lib/font';
 
 export const metadata: Metadata = {
   title: 'Yuk Ngobrol',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${figtree.className}`}>
+      <body className={`${poppins.className}`}>
         <Provider>{children}</Provider>
       </body>
     </html>

@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect } from 'react';
 import styles from './page.module.css';
-import { figtree } from '@/lib/figtree.font';
+import { poppins } from '@/lib/font';
 import { IconRefresh } from '@tabler/icons-react';
 
 export default function Home() {
@@ -51,7 +51,7 @@ export default function Home() {
       </div>
       <div className={styles.action}>
         <button
-          className={`${styles['btn-random']} ${figtree.className}`}
+          className={`${styles['btn-random']} ${poppins.className}`}
           onClick={handleButtonRandom}
         >
           <IconRefresh />
