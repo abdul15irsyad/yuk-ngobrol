@@ -29,7 +29,7 @@ model Question {
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
 
-  category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@map("question")
 }
@@ -37,10 +37,28 @@ model Question {
 model Category {
   id        String   @id @default(uuid())
   name      String   @db.VarChar()
+  logoId    String?  @map("logo_id")
+  color     String   @db.VarChar()
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  logo     File?      @relation(fields: [logoId], references: [id], onDelete: SetNull)
   Question Question[]
 
   @@map("category")
+}
+
+model File {
+  id               String   @id @default(uuid())
+  path             String   @db.VarChar()
+  originalFilename String   @map("original_filename") @db.VarChar()
+  filename         String   @map("filename") @db.VarChar()
+  mime             String   @db.VarChar()
+  size             Float    @db.Real /// size in bytes
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  Category Category[]
+
+  @@map("file")
 }

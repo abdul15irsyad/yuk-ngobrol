@@ -31,6 +31,14 @@ export const GET = async (request: Request) => {
       category: {
         select: {
           name: true,
+          color: true,
+          logo: {
+            select: {
+              path: true,
+              filename: true,
+              mime: true,
+            },
+          },
         },
       },
     },

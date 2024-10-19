@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export const middleware = async (request: NextRequest) => {
-  console.log('middleware', request.url);
+export const middleware = async () => {
+  // console.log('middleware', request.url);
   return NextResponse.next();
 };
 

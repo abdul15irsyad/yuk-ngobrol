@@ -1,12 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import { categorySeeder } from './seeds/category.seeder';
 import { questionSeeder } from './seeds/question.seeder';
+import { fileSeeder } from './seeds/file.seeder';
 
 const prisma = new PrismaClient();
 
 (async () => {
   try {
-    const seeds = [categorySeeder, questionSeeder];
+    const seeds = [fileSeeder, categorySeeder, questionSeeder];
     for await (const seed of seeds) {
       if (!(await prisma.seeder.findFirst({ where: { name: seed.name } }))) {
         console.info(`${seed.name} executing`);
