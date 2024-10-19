@@ -2,9 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15rem;
-  height: 25rem;
-  background-color: white;
+  width: 16rem;
+  height: 28rem;
+  max-height: 70vh;
+  background-color: #ffffff;
   border: 1px solid #dadada;
   padding: 1rem;
   border-radius: 1rem;
@@ -12,11 +13,46 @@
   overflow: hidden;
 }
 
+.question-card .title {
+  position: absolute;
+  top: 2rem;
+  font-weight: bold;
+}
+
 .question-card .question {
+  width: 100%;
   text-align: center;
   font-weight: bold;
   font-size: 18px;
   color: #5e5e5e;
+  padding: 2rem 1rem;
+  border: 2px dashed #e7e7e7;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.question-card .question .quote {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  padding: 0.75rem;
+  background-color: white;
+}
+
+.question-card .question .quote.top-left {
+  top: -1rem;
+  left: -1rem;
+}
+
+.question-card .question .quote.bottom-right {
+  bottom: -1rem;
+  right: -1rem;
+}
+
+.question-card .question .quote img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%) brightness(100%) grayscale(100%);
 }
 
 .question-card .category {
@@ -41,4 +77,16 @@
 .question-card .category span {
   font-weight: bold;
   font-size: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .question-card {
+    max-width: 92%;
+  }
+
+  .question-card .question .quote,
+  .question-card .question .quote img {
+    width: 20px;
+    height: 20px;
+  }
 }
