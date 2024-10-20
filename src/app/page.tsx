@@ -10,11 +10,13 @@ import { useEffect } from 'react';
 import styles from './page.module.css';
 import { figtree } from '@/lib/font';
 import { IconRefresh } from '@tabler/icons-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export default function Home() {
   const { list, setList } = useQuestionStore();
   const {
     data: questions,
+    isLoading,
     isSuccess,
     refetch,
   } = useQuery({
@@ -44,7 +46,17 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      {list.length > 0 ? (
+      {isLoading ? (
+        <div className={styles.loading}>
+          <DotLottieReact
+            src="/lottie/loading-animation.json"
+            loop
+            autoplay
+            style={{ width: '40px', height: '40px' }}
+          />
+          <span>Memuat data...</span>
+        </div>
+      ) : list?.length > 0 ? (
         <>
           <div className={styles.question}>
             {list?.slice(0, 1)?.map((question, index) => {
@@ -62,7 +74,15 @@ export default function Home() {
           </div>
         </>
       ) : (
-        <div className="no-data">Tidak ada data</div>
+        <div className={styles['no-data']}>
+          <DotLottieReact
+            src="/lottie/no-data.json"
+            loop
+            autoplay
+            style={{ width: '40px', height: '40px' }}
+          />
+          <span>Tidak ada data</span>
+        </div>
       )}
     </div>
   );

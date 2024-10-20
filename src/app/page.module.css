@@ -15,6 +15,13 @@
   }
 }
 
+.loading,
+.no-data {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .question {
   display: flex;
   gap: 1rem;
